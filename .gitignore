@@ -1,0 +1,88 @@
+# ---------------------------------
+# Python
+# ---------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# ---------------------------------
+# Virtual environments
+# ---------------------------------
+.venv/
+venv/
+env/
+
+# ---------------------------------
+# uv / packaging
+# ---------------------------------
+.uv/
+uv.lock.bak
+
+# (IMPORTANT: keep uv.lock tracked for reproducibility)
+# uv.lock   <-- DO NOT IGNORE
+
+# ---------------------------------
+# Jupyter / research artifacts
+# ---------------------------------
+.ipynb_checkpoints/
+*.ipynb
+
+# ---------------------------------
+# Data (critical for ML projects)
+# ---------------------------------
+data/
+datasets/
+*.h5
+*.hdf5
+*.npz
+*.npy
+
+# Specific example: ignore raw ECG dumps
+raw_ecg_data/
+
+# ---------------------------------
+# Model artifacts
+# ---------------------------------
+*.pt
+*.pth
+*.ckpt
+checkpoint/
+models/
+
+# Specific: ignore training outputs but keep config
+outputs/
+!outputs/config.yaml
+
+# ---------------------------------
+# Logs
+# ---------------------------------
+logs/
+*.log
+
+# ---------------------------------
+# OS / IDE
+# ---------------------------------
+.DS_Store
+.vscode/
+.idea/
+
+# ---------------------------------
+# Streamlit / Dash
+# ---------------------------------
+.streamlit/secrets.toml
+
+# ---------------------------------
+# Build artifacts
+# ---------------------------------
+build/
+dist/
+*.egg-info/
+
+# ---------------------------------
+# Temporary files
+# ---------------------------------
+tmp/
+temp/
+*.tmp
