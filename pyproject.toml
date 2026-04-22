@@ -13,24 +13,38 @@ dependencies = [
     "matplotlib>=3.10,<4.0",
     "h5py>=3.14,<4.0",
     "tqdm>=4.66",
+    "wfdb>=4.1",
 ]
 
 # -----------------------------
-# CUDA variants (mirrors ecgxai)
+# PyTorch variants
 # -----------------------------
 
 [project.optional-dependencies]
+cpu = [
+    "torch>=2.2",
+    "torchvision>=0.17",
+    "torchaudio>=2.2",
+]
+
 cuda118 = [
-    "torch==2.0.0; python_version == '3.10'",
-    "torchvision==0.15.1; python_version == '3.10'",
-    "torchaudio==2.0.0; python_version == '3.10'",
+    "torch==2.0.0",
+    "torchvision==0.15.1",
+    "torchaudio==2.0.0",
 ]
 
 cuda121 = [
-    "torch==2.2.2; python_version == '3.12'",
-    "torchvision==0.17.2; python_version == '3.12'",
-    "torchaudio==2.2.2; python_version == '3.12'",
+    "torch==2.2.2",
+    "torchvision==0.17.2",
+    "torchaudio==2.2.2",
 ]
+
+# -----------------------------
+# CLI entry point
+# -----------------------------
+
+[project.scripts]
+ecgfounder = "ecgfounder.main:main"
 
 # -----------------------------
 # build system
@@ -43,30 +57,42 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools.packages.find]
+include = ["ecgfounder*"]
+
 # -----------------------------
-# uv configuration (identical)
+# uv configuration
 # -----------------------------
+
+[tool.uv]
+conflicts = [
+    [
+        { extra = "cuda118" },
+        { extra = "cuda121" },
+        { extra = "cpu" },
+    ],
+]
 
 [tool.uv.sources]
 torch = [
-    { index = "pytorch-cu118", marker = "python_version == '3.10'" },
-    { index = "pytorch-cu121", marker = "python_version == '3.12'" },
+    { index = "pytorch-cu118", extra = "cuda118" },
+    { index = "pytorch-cu121", extra = "cuda121" },
 ]
-
 torchvision = [
-    { index = "pytorch-cu118", marker = "python_version == '3.10'" },
-    { index = "pytorch-cu121", marker = "python_version == '3.12'" },
+    { index = "pytorch-cu118", extra = "cuda118" },
+    { index = "pytorch-cu121", extra = "cuda121" },
 ]
-
 torchaudio = [
-    { index = "pytorch-cu118", marker = "python_version == '3.10'" },
-    { index = "pytorch-cu121", marker = "python_version == '3.12'" },
+    { index = "pytorch-cu118", extra = "cuda118" },
+    { index = "pytorch-cu121", extra = "cuda121" },
 ]
 
 [[tool.uv.index]]
 name = "pytorch-cu118"
 url = "https://download.pytorch.org/whl/cu118"
+explicit = true
 
 [[tool.uv.index]]
 name = "pytorch-cu121"
 url = "https://download.pytorch.org/whl/cu121"
+explicit = true

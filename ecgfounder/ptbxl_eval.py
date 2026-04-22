@@ -11,8 +11,8 @@ import wfdb
 import ast
 from scipy import signal
 import json
-from net1d import Net1D
-from util import eval_with_dynamic_thresh
+from .net1d import Net1D
+from .util import eval_with_dynamic_thresh
 from sklearn.metrics import roc_auc_score, average_precision_score, confusion_matrix, f1_score
 from scipy.stats import bootstrap
 from tqdm import tqdm

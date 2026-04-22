@@ -6,7 +6,7 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as transforms
 from scipy.signal import medfilt, iirnotch, filtfilt, butter, resample
-from util import filter_bandpass
+from .util import filter_bandpass
 
 
 class LVEF_12lead_cls_Dataset(Dataset):
